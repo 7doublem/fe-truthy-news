@@ -2,6 +2,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import Landing from './components/Landing'
 import Articles from './components/Articles'
+import SingleArticle from './components/SingleArticle'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
        <Route path="/" element={<Landing />} /> 
        <Route path="/articles" element={<Articles />} />
+       <Route path="/articles/:article_id" element={<SingleArticle />} />
       </Routes>
       <Footer />
       </BrowserRouter>

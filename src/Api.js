@@ -5,5 +5,9 @@ const truthyNewsApi = axios.create({
 });
 
 export const fetchArticles = () => {
-  return truthyNewsApi.get("/articles")
+  return truthyNewsApi.get("/articles");
+};
+
+export const fetchArticleById = (article_id) => {
+  return truthyNewsApi.get(`/articles/${article_id}`);
 };
