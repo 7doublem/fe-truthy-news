@@ -21,7 +21,7 @@ function Articles() {
   }, []);
 
   if (isLoading) {
-    return <p>Page is loading</p>;
+    return <p>Loading articles..</p>;
   }
   if (error) {
     return <p>Error: {error.message}</p>;
