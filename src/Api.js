@@ -11,3 +11,7 @@ export const fetchArticles = () => {
 export const fetchArticleById = (article_id) => {
   return truthyNewsApi.get(`/articles/${article_id}`);
 };
+
+export const fetchCommentsByArticleId = (article_id) => {
+    return truthyNewsApi.get(`/articles/${article_id}/comments`)
+}
