@@ -5,7 +5,7 @@ function ArticleCard({ article }) {
     <div>
       <section>
         <p>Article Number {article.article_id}</p>
-        <Link to={`/article/${article.article_id}`}>
+        <Link to={`/articles/${article.article_id}`}>
           <button>
             <img
               src={article.article_img_url}
@@ -18,9 +18,9 @@ function ArticleCard({ article }) {
         <p>Topic: {article.topic}</p>
         <p>By {article.author}</p>
         <p>{new Date(article.created_at).toLocaleString()}</p>
-        <p>{article.votes}</p>
-        <p>{article.comment_count}</p>
-        <Link to={`/article/${article.article_id}`}>
+        <p>Votes:{article.votes}</p>
+        <p>Comments: {article.comment_count}</p>
+        <Link to={`/articles/${article.article_id}`}>
           <button>
             <p>{article.title}</p>
           </button>
