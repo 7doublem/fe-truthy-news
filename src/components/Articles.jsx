@@ -1,6 +1,6 @@
 import NavBar from "./NavBar";
 import { useState, useEffect } from "react";
-import { fetchArticles } from "../Api";
+import { getAllArticles } from "../Api";
 import ArticleCard from "./ArticleCard"
 
 function Articles() {
@@ -9,7 +9,7 @@ function Articles() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchArticles()
+    getAllArticles()
       .then((res) => {
         setArticles(res.data.articles);
         setisLoading(false);
