@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { fetchArticleById } from "../Api";
-import { fetchCommentsByArticleId } from "../Api";
+import { getArticleById } from "../Api";
+import { getCommentsByArticleId } from "../Api";
 import NavBar from "./NavBar";
 import CommentCard from "./CommentCard.jsx";
+import VoteCard from "./VoteCard.jsx";
 
 function SingleArticle() {
   const { article_id } = useParams();
@@ -15,7 +16,7 @@ function SingleArticle() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchArticleById(article_id)
+    getArticleById(article_id)
       .then((res) => {
         setArticle(res.data.article);
         setisLoadingArticle(false);
@@ -28,7 +29,7 @@ function SingleArticle() {
 
   const handleLoadingComments = () => {
     setIsLoadingComments(true);
-    fetchCommentsByArticleId(article_id).then((res) => {
+    getCommentsByArticleId(article_id).then((res) => {
       setComments(res.data.comments);
       setShowComments(true);
       setIsLoadingComments(false);
@@ -54,7 +55,7 @@ function SingleArticle() {
         <p>{article.body}</p>
         <p>{article.author}</p>
         <p>{new Date(article.created_at).toLocaleString()}</p>
-        <p>Votes: {article.votes}</p>
+        <VoteCard initialVotes={article.votes} id={article.article_id} type="article"/>
 
         {!showComments && (
           <button onClick={handleLoadingComments}>
@@ -67,7 +68,7 @@ function SingleArticle() {
         {showComments && (
           <div>
             {comments.map((comment) => (
-              <CommentCard key={comment.comment_id} comment = {comment} />
+              <CommentCard key={comment.comment_id} comment={comment} />
             ))}
           </div>
         )}
