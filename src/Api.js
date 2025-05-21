@@ -4,6 +4,10 @@ const truthyNewsApi = axios.create({
   baseURL: "https://truthy-news.onrender.com/api/",
 });
 
+export const getAllUsers = () => {
+  return truthyNewsApi.get("/users");
+};
+
 export const getAllArticles = () => {
   return truthyNewsApi.get("/articles");
 };
@@ -20,6 +24,10 @@ export const patchArticleById = (article_id, inc_votes) => {
   return truthyNewsApi.patch(`/articles/${article_id}`, { inc_votes });
 };
 
-export const patchCommentById = (inc_votes) => {
-  return truthyNewsApi.patch(`/articles/${article_id}/comments`, { inc_votes });
+export const patchCommentById = (comment_id, inc_votes) => {
+  return truthyNewsApi.patch(`/comments/${comment_id}`, { inc_votes });
+};
+
+export const postCommentByArticleId = (article_id, username, body) => {
+  return truthyNewsApi.post(`/articles/${article_id}/comments`, {username, body});
 };
