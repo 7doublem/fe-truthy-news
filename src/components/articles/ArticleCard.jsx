@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import thumbsUp from "../votesIcons/thumbsUp.svg";
-import thumbsDown from "../votesIcons/thumbsDown.svg";
+import thumbsUp from "../../votesIcons/thumbsUp.svg";
+import thumbsDown from "../../votesIcons/thumbsDown.svg";
 import { useNavigate } from "react-router-dom";
 
 function ArticleCard({ article }) {

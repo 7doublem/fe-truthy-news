@@ -1,26 +1,26 @@
-import NavBar from "./NavBar";
+import NavBar from "../NavBar";
 import { useState, useEffect } from "react";
-import { getAllArticles } from "../Api";
-import ArticleCard from "./ArticleCard"
+import { getAllArticles } from "../../Api";
+import ArticleCard from "./ArticleCard";
 
 function Articles() {
   const [articles, setArticles] = useState([]);
-  const [isLoading, setisLoading] = useState(true);
+  const [isLoadingArticles, setisLoadingArticles] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     getAllArticles()
       .then((res) => {
         setArticles(res.data.articles);
-        setisLoading(false);
+        setisLoadingArticles(false);
       })
       .catch((err) => {
-        setisLoading(false);
+        setisLoadingArticles(false);
         setError(err);
       });
   }, []);
 
-  if (isLoading) {
+  if (isLoadingArticles) {
     return <p>Loading articles..</p>;
   }
   if (error) {
@@ -32,7 +32,7 @@ function Articles() {
       <NavBar />
       <h2>Articles</h2>
       {articles.map((article) => (
-        <ArticleCard key={article.article_id} article = {article} />
+        <ArticleCard key={article.article_id} article={article} />
       ))}
     </div>
   );

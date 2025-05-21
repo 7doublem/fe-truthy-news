@@ -5,12 +5,14 @@ import { patchArticleById, patchCommentById } from "../Api";
 
 function VoteCard({ initialVotes, id, type }) {
   const [votes, setVotes] = useState(initialVotes);
-  const [isVoting, setIsVoting] = useState(false);
+  const [hasVoted, setHasVoted] = useState(false);
   const [error, setError] = useState(null);
 
   const handleUpdateVotes = (increment) => {
+    if (hasVoted) return;
+
     setVotes((prev) => prev + increment);
-    setIsVoting(true);
+    setHasVoted(true);
     setError(null);
 
     const patchDecider =
@@ -18,24 +20,20 @@ function VoteCard({ initialVotes, id, type }) {
         ? () => patchCommentById(id, increment)
         : () => patchArticleById(id, increment);
 
-    patchDecider()
-      .then(() => {
-        setIsVoting(false);
-      })
-      .catch(() => {
-        setVotes((prev) => prev - increment);
-        setError("Vote did not register. Please try again.");
-        setIsVoting(false);
-      });
+    patchDecider().catch(() => {
+      setVotes((prev) => prev - increment);
+      setHasVoted(false);
+      setError("Vote did not register. Please try again.");
+    });
   };
 
   return (
     <div>
       <p>Votes: {votes}</p>
-      <button onClick={() => handleUpdateVotes(1)} disabled={isVoting}>
+      <button onClick={() => handleUpdateVotes(1)} disabled={hasVoted}>
         <img src={thumbsUp} alt="Thumbs Up" width={24} height={24} />
       </button>
-      <button onClick={() => handleUpdateVotes(-1)} disabled={isVoting}>
+      <button onClick={() => handleUpdateVotes(-1)} disabled={hasVoted}>
         <img src={thumbsDown} alt="Thumbs Down" width={24} height={24} />
       </button>
       {error && <p>{error}</p>}
