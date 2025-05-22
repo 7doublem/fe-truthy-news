@@ -1,21 +1,19 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getCommentsByArticleId } from "../../Api.js";
 import CommentCard from "./CommentCard.jsx";
 
-function CommentSection({ commentCount }) {
+function CommentSection() {
   const { article_id } = useParams();
   const [comments, setComments] = useState([]);
   const [isLoadingComments, setIsLoadingComments] = useState(false);
-  const [showComments, setShowComments] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleLoadingComments = () => {
+  useEffect(() => {
     setIsLoadingComments(true);
     getCommentsByArticleId(article_id)
       .then((res) => {
         setComments(res.data.comments);
-        setShowComments(true);
       })
       .catch((err) => {
         setError(err);
@@ -23,7 +21,7 @@ function CommentSection({ commentCount }) {
       .finally(() => {
         setIsLoadingComments(false);
       });
-  };
+  }, [article_id]);
 
   if (isLoadingComments) {
     return <p>Loading comments..</p>;
@@ -33,28 +31,16 @@ function CommentSection({ commentCount }) {
   }
 
   return (
-    <div>
-      <section>
-        {!showComments && (
-          <button onClick={handleLoadingComments} disabled={isLoadingComments}>
-            {isLoadingComments
-              ? `Loading ${commentCount} comments..`
-              : `Load ${commentCount} comments`}
-          </button>
-        )}
-        {error && <p>{error.message}</p>}
-
-        {showComments && (
-          <div>
-            <p>Comments</p>
-            {comments.map((comment) => (
-              <CommentCard key={comment.comment_id} comment={comment} />
-            ))}
-          </div>
-        )}
-      </section>
-    </div>
+    <section>
+      <p>Comments</p>
+      {comments.length === 0 ? (
+        <p>No comments yet</p>
+      ) : (
+        comments.map((comment) => (
+          <CommentCard key={comment.comment_id} comment={comment} />
+        ))
+      )}
+    </section>
   );
 }
-
 export default CommentSection;

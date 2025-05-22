@@ -23,7 +23,7 @@ function VoteCard({ initialVotes, id, type }) {
     patchDecider().catch(() => {
       setVotes((prev) => prev - increment);
       setHasVoted(false);
-      setError("Vote did not register. Please try again.");
+      setError("Vote did not register, please try again");
     });
   };
 
