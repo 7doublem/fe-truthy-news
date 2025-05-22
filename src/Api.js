@@ -8,9 +8,9 @@ export const getAllUsers = () => {
   return truthyNewsApi.get("/users");
 };
 
-export const getSortedArticles = (sortBy, order) => {
+export const getSortedArticles = ({ sortBy, order, topic }) => {
   return truthyNewsApi.get("/articles", {
-    params: { sort_by: sortBy, order: order },
+    params: { sort_by: sortBy, order: order, topic: topic },
   });
 };
 
@@ -44,9 +44,3 @@ export const deleteCommentById = (comment_id) => {
 export const getAllTopics = () => {
   return truthyNewsApi.get("/topics");
 };
-
-export const getArticlesByTopic = (topic) => {
-  return truthyNewsApi.get(`/articles?topic=${topic}`);
-};
-
-

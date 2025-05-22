@@ -1,34 +1,53 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticleById } from "../../Api.js";
 import NavBar from "../navigation/NavBar.jsx";
 import VoteCard from "../votes/VoteCard.jsx";
-import CommentSection from "../comments/CommentSection";
 import PostComment from "../comments/PostComment.jsx";
+import GlobalErrorHandler from "../errors/GlobalErrorHandler.jsx";
+import { handleApiError } from "../utils/handleApiError.js";
 
 function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoadingArticle, setisLoadingArticle] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isCommentsRoute = location.pathname.endsWith("/comments");
 
+  const toggleComments = () => {
+    if (isCommentsRoute) {
+      navigate(`/articles/${article_id}`);
+    } else {
+      navigate(`/articles/${article_id}/comments`);
+    }
+  };
   useEffect(() => {
     getArticleById(article_id)
       .then((res) => {
         setArticle(res.data.article);
-        setisLoadingArticle(false);
       })
       .catch((err) => {
+        const message = handleApiError(err);
+        setError(message);
+      })
+      .finally(() => {
         setisLoadingArticle(false);
-        setError(err);
       });
   }, [article_id]);
 
   if (isLoadingArticle) {
     return <p>Loading article..</p>;
   }
+
   if (error) {
-    return <p>Error: {error.message}</p>;
+    return (
+      <div>
+        <GlobalErrorHandler status={error.status} message={error.message} />
+        <button onClick={() => navigate("/articles")}>Go Back</button>
+      </div>
+    );
   }
 
   return (
@@ -48,7 +67,10 @@ function SingleArticle() {
           id={article.article_id}
           type="article"
         />
-        <CommentSection commentCount={article.comment_count} />
+        <button onClick={toggleComments}>
+          {isCommentsRoute ? "Hide Comments" : "Show Comments"}
+        </button>
+        <Outlet />
         <PostComment article_id={article.article_id} />
       </section>
     </div>

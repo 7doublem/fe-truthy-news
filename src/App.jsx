@@ -7,7 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SelectUser from "./components/users/SelectUser";
 import { UserProvider } from "./context/UserContext";
 import Topics from "./components/topics/Topics";
-import TopicArticles from "./components/topics/TopicArticles";
+import NotFound from "./components/navigation/NotFound";
+import CommentSection from "./components/comments/CommentSection";
 
 function App() {
   return (
@@ -19,9 +20,11 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/users" element={<SelectUser />} />
             <Route path="/articles" element={<Articles />} />
-            <Route path="/articles/:article_id" element={<SingleArticle />} />
+            <Route path="/articles/:article_id" element={<SingleArticle />}>
+              <Route path="comments" element={<CommentSection />} />
+            </Route>
             <Route path="/topics" element={<Topics />} />
-            <Route path="/topics/:topic_slug" element={<TopicArticles />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
         </UserProvider>
