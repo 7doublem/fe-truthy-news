@@ -1,4 +1,4 @@
-import VoteCard from "../VoteCard.jsx";
+import VoteCard from "../votes/VoteCard.jsx";
 import bin from "../../deleteIcon/bin.svg";
 import { useState } from "react";
 import { useContext } from "react";
@@ -50,7 +50,6 @@ function CommentCard({ comment }) {
                 disabled={isDeletingComment}
               />
             </button>
-            
           </div>
         )}
         {message && <p>{message}</p>}

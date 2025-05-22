@@ -1,4 +1,4 @@
-import NavBar from "../NavBar";
+import NavBar from "../navigation/NavBar";
 import { useState, useEffect } from "react";
 import { getAllArticles } from "../../Api";
 import ArticleCard from "./ArticleCard";
