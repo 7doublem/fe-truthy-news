@@ -31,3 +31,7 @@ export const patchCommentById = (comment_id, inc_votes) => {
 export const postCommentByArticleId = (article_id, username, body) => {
   return truthyNewsApi.post(`/articles/${article_id}/comments`, {username, body});
 };
+
+export const deleteCommentById = (comment_id) => {
+  return truthyNewsApi.delete(`/comments/${comment_id}`)
+}

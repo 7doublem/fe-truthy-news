@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { getCommentsByArticleId } from "../../Api.js";
 import CommentCard from "./CommentCard.jsx";
-import PostComment from "./PostComment.jsx";
 
 function CommentSection({ commentCount }) {
   const { article_id } = useParams();

@@ -22,11 +22,7 @@ function PostComment({ article_id }) {
 
     const username = user.username;
 
-    console.log("Posting to article:", article_id);
-    console.log("Comment data:", {
-      body,
-      username: user.username,
-    });
+
     postCommentByArticleId(article_id, username, body)
       .then(() => {
         setBody("");
