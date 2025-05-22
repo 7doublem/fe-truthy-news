@@ -2,11 +2,17 @@ import sortby from "../../sortingIcons/sortby.svg";
 import orders from "../../sortingIcons/orders.svg";
 import { useState } from "react";
 
-function SortArticles({ sortBy, setSortBy, order, setOrder }) {
+function SortArticles({ sortBy, order, setSearchParams }) {
   const [listOpen, setListOpen] = useState(false);
 
   const toggleOrder = () => {
-    setOrder((prev) => (prev === "desc" ? "asc" : "desc"));
+    const newOrder = order === "asc" ? "desc" : "asc";
+    setSearchParams({ sort_by: sortBy, order: newOrder });
+  };
+
+  const handleSortUpdate = (newSortBy) => {
+    setSearchParams({ sort_by: newSortBy, order });
+    setListOpen(false);
   };
 
   const options = [
@@ -32,8 +38,7 @@ function SortArticles({ sortBy, setSortBy, order, setOrder }) {
             <div
               key={option.value}
               onClick={() => {
-                setSortBy(option.value);
-                setListOpen(false);
+                handleSortUpdate(option.value);
               }}
             >
               <button>{option.label}</button>
