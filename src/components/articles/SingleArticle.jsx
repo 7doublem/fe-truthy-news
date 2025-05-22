@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticleById } from "../../Api.js";
-import NavBar from "../NavBar.jsx";
-import VoteCard from "../VoteCard.jsx";
+import NavBar from "../navigation/NavBar.jsx";
+import VoteCard from "../votes/VoteCard.jsx";
 import CommentSection from "../comments/CommentSection";
 import PostComment from "../comments/PostComment.jsx";
 
@@ -35,7 +35,7 @@ function SingleArticle() {
     <div>
       <NavBar />
       <section>
-        <p>Topic</p>
+        <p>{article.topic}</p>
         <p>
           {article.article_id}:{article.title}
         </p>

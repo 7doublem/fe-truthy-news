@@ -1,7 +1,7 @@
-import thumbsUp from "../votesIcons/thumbsUp.svg";
-import thumbsDown from "../votesIcons/thumbsDown.svg";
+import thumbsUp from "../../votesIcons/thumbsUp.svg";
+import thumbsDown from "../../votesIcons/thumbsDown.svg";
 import { useState } from "react";
-import { patchArticleById, patchCommentById } from "../Api";
+import { patchArticleById, patchCommentById } from "../../Api";
 
 function VoteCard({ initialVotes, id, type }) {
   const [votes, setVotes] = useState(initialVotes);
