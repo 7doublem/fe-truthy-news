@@ -8,8 +8,10 @@ export const getAllUsers = () => {
   return truthyNewsApi.get("/users");
 };
 
-export const getAllArticles = () => {
-  return truthyNewsApi.get("/articles");
+export const getSortedArticles = (sortBy, order) => {
+  return truthyNewsApi.get("/articles", {
+    params: { sort_by: sortBy, order: order },
+  });
 };
 
 export const getArticleById = (article_id) => {
@@ -46,3 +48,5 @@ export const getAllTopics = () => {
 export const getArticlesByTopic = (topic) => {
   return truthyNewsApi.get(`/articles?topic=${topic}`);
 };
+
+
