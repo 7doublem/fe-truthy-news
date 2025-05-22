@@ -12,16 +12,16 @@ import TopicArticles from "./components/topics/TopicArticles";
 function App() {
   return (
     <div>
-      <Header />
       <BrowserRouter>
         <UserProvider>
+          <Header />
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/users" element={<SelectUser />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/articles/:article_id" element={<SingleArticle />} />
             <Route path="/topics" element={<Topics />} />
-            <Route path= "/topics/:topic_slug" element={<TopicArticles />} />
+            <Route path="/topics/:topic_slug" element={<TopicArticles />} />
           </Routes>
           <Footer />
         </UserProvider>

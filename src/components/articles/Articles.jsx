@@ -3,14 +3,17 @@ import { useState, useEffect } from "react";
 import { getSortedArticles } from "../../Api";
 import ArticleCard from "./ArticleCard";
 import SortArticles from "./SortArticles";
+import { useSearchParams } from "react-router-dom";
 
 function Articles() {
   const [articles, setArticles] = useState([]);
   const [isLoadingArticles, setisLoadingArticles] = useState(true);
-  const [sortBy, setSortBy] = useState("created_at");
-  const [order, setOrder] = useState("desc");
   const [error, setError] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  const sortBy = searchParams.get("sort_by") || "created_at";
+  const order = searchParams.get("order") || "desc";
+  
   useEffect(() => {
     getSortedArticles(sortBy, order)
       .then((res) => {
@@ -36,9 +39,8 @@ function Articles() {
       <h2>Articles</h2>
       <SortArticles
         sortBy={sortBy}
-        setSortBy={setSortBy}
         order={order}
-        setOrder={setOrder}
+        setSearchParams={setSearchParams}
       />
       {articles.map((article) => (
         <ArticleCard key={article.article_id} article={article} />
