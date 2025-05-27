@@ -19,7 +19,6 @@
   height: auto;
 }
 
-/* Unified responsive layout for all grid types */
 .articles-grid,
 .user-grid,
 .topics-grid {
@@ -142,8 +141,6 @@
   aspect-ratio: 1 / 1;
   object-fit: contain;
 }
-
-
 
 .error-box {
   background-color: #ffe5e5;

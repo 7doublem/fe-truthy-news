@@ -30,7 +30,7 @@ header {
 
 footer {
   padding: 1rem;
-  background-color: #e0e0e0; /* darker grey */
+  background-color: #e0e0e0; 
   text-align: center;
   font-size: 0.9rem;
   color: #333;
@@ -56,7 +56,6 @@ main {
   margin: 0 auto;
 }
 
-/* Typography */
 h1,
 h2,
 h3,
@@ -73,7 +72,6 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Links and Media */
 a {
   color: #0077cc;
   text-decoration: none;
@@ -86,12 +84,10 @@ img {
   height: auto;
 }
 
-/* Layout Blocks */
 section {
   margin-bottom: 1.5rem;
 }
 
-/* Utility Classes */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -112,7 +108,6 @@ button:hover {
   background-color: #005fa3;
 }
 
-/* === NavBar === */
 .navbar {
   display: flex;
   flex-direction: column;
@@ -127,7 +122,6 @@ button:hover {
   gap: 0.5rem;
 }
 
-/* === Dropdown Toggle Button === */
 .menu-toggle {
   background: none;
   border: none;
@@ -191,7 +185,6 @@ button:hover {
 }
 
 
-/* === Responsive Breakpoints === */
 @media (min-width: 768px) {
   main {
     padding: 2rem;
