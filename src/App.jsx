@@ -9,23 +9,26 @@ import { UserProvider } from "./context/UserContext";
 import Topics from "./components/topics/Topics";
 import NotFound from "./components/navigation/NotFound";
 import CommentSection from "./components/comments/CommentSection";
+import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div id="app">
       <BrowserRouter>
         <UserProvider>
           <Header />
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route path="/users" element={<SelectUser />} />
-            <Route path="/articles" element={<Articles />} />
-            <Route path="/articles/:article_id" element={<SingleArticle />}>
-              <Route path="comments" element={<CommentSection />} />
-            </Route>
-            <Route path="/topics" element={<Topics />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <main>
+            <Routes>
+              <Route path="/" element={<Landing />} />
+              <Route path="/users" element={<SelectUser />} />
+              <Route path="/articles" element={<Articles />} />
+              <Route path="/articles/:article_id" element={<SingleArticle />}>
+                <Route path="comments" element={<CommentSection />} />
+              </Route>
+              <Route path="/topics" element={<Topics />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
           <Footer />
         </UserProvider>
       </BrowserRouter>

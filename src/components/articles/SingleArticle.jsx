@@ -1,7 +1,6 @@
 import { useParams, useNavigate, useLocation, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getArticleById } from "../../Api.js";
-import NavBar from "../navigation/NavBar.jsx";
 import VoteCard from "../votes/VoteCard.jsx";
 import PostComment from "../comments/PostComment.jsx";
 import GlobalErrorHandler from "../errors/GlobalErrorHandler.jsx";
@@ -52,8 +51,7 @@ function SingleArticle() {
 
   return (
     <div>
-      <NavBar />
-      <section>
+      <section className="article-card">
         <p>{article.topic}</p>
         <p>
           {article.article_id}:{article.title}
@@ -70,8 +68,10 @@ function SingleArticle() {
         <button onClick={toggleComments}>
           {isCommentsRoute ? "Hide Comments" : "Show Comments"}
         </button>
+        <div className="comment-section">
         <Outlet />
         <PostComment article_id={article.article_id} />
+        </div>
       </section>
     </div>
   );

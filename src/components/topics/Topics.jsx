@@ -1,4 +1,3 @@
-import NavBar from "../navigation/NavBar";
 import { useEffect, useState } from "react";
 import { getAllTopics } from "../../Api";
 import TopicCard from "./TopicCard";
@@ -26,8 +25,7 @@ function Topics() {
   }
 
   return (
-    <div>
-    <NavBar />
+    <div className="topics-grid">
     <h2>Topics</h2>
     {topics.map((topic) => (
         <TopicCard key ={topic.slug} topic={topic} />

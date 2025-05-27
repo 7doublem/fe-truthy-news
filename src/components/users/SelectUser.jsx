@@ -36,7 +36,7 @@ function SelectUser() {
   }
 
   return (
-    <div>
+    <div className="user-grid">
       <section>
       <h2>Select Your User</h2>
       {user && <p>Currently selected: {user.username}</p>}

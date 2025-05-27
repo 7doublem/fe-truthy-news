@@ -18,34 +18,39 @@ function SortArticles({ sortBy, order, setSearchParams }) {
   const options = [
     { value: "created_at", label: "Date" },
     { value: "comment_count", label: "Comments" },
-    { value: "votes", label: "votes" },
+    { value: "votes", label: "Votes" },
   ];
 
   return (
-    <div>
-      <button onClick={() => setListOpen(!listOpen)}>
-        <img
-          src={sortby}
-          alt="Sort By Date, Comment Count or Votes"
-          width={24}
-          height={24}
-        />
-      </button>
+    <div className="sort-controls">
+      <div className="sort-dropdown-container">
+        <button
+          className="menu-toggle"
+          onClick={() => setListOpen(!listOpen)}
+          aria-label="Toggle sort menu"
+        >
+          <img
+            src={sortby}
+            alt="Sort By Date, Comment Count or Votes"
+            width={24}
+            height={24}
+          />
+        </button>
 
-      {listOpen && (
-        <div>
-          {options.map((option) => (
-            <div
-              key={option.value}
-              onClick={() => {
-                handleSortUpdate(option.value);
-              }}
-            >
-              <button>{option.label}</button>
-            </div>
-          ))}
-        </div>
-      )}
+        {listOpen && (
+          <div className="dropdown-menu">
+            {options.map((option) => (
+              <button
+                key={option.value}
+                onClick={() => handleSortUpdate(option.value)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       <button onClick={toggleOrder}>
         <img
           src={orders}
@@ -54,6 +59,7 @@ function SortArticles({ sortBy, order, setSearchParams }) {
           height={24}
         />
       </button>
+
       <p>Sorting by: {sortBy}</p>
       <p>Order: {order}</p>
     </div>

@@ -2,7 +2,9 @@ function Footer() {
     return (
         <div>
             <footer>
-                <p>Truthy News™ © 2025 - Powered by 100% truthy news, no falsy headlines here.</p>
+                <p>
+                <strong>Truthy News™</strong> © 2025 - Powered by 100% <strong>truthy</strong> news, no <em>falsy</em> headlines here.
+                </p>
             </footer>
         </div>
     )
