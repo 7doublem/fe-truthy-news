@@ -10,8 +10,7 @@ function ArticleCard({ article }) {
     navigate(`/articles/${article.article_id}`);
   }
   return (
-    <div>
-      <section>
+    <div className="article-card">
         <p>Article Number {article.article_id}</p>
         <Link to={`/articles/${article.article_id}`}>
           <img
@@ -26,16 +25,15 @@ function ArticleCard({ article }) {
         <p>{new Date(article.created_at).toLocaleString()}</p>
         <p>Votes:{article.votes}</p>
         <button onClick={handleClick}>
-          <img src={thumbsUp} alt="Thumbs Up" width={24} height={24} />
+          <img src={thumbsUp} alt="Thumbs Up" className="vote-icon"/>
         </button>
         <button onClick={handleClick}>
-          <img src={thumbsDown} alt="Thumbs Down" width={24} height={24} />
+          <img src={thumbsDown} alt="Thumbs Down" className="vote-icon" />
         </button>
         <p>Comments: {article.comment_count}</p>
         <Link to={`/articles/${article.article_id}`}>
           <p>{article.title}</p>
         </Link>
-      </section>
     </div>
   );
 }

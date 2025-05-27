@@ -12,12 +12,11 @@ function UserCard({ user }) {
   }
 
   return (
-    <div>
+    <div className="user-card">
+      <strong>{user.name}</strong>
       <img
         src={user.avatar_url}
         alt={user.name}
-        width={100}
-        height={100}
         onClick={clickUsername}
       />
       <button onClick={clickUsername}>{user.username}</button>

@@ -1,4 +1,3 @@
-import NavBar from "../navigation/NavBar";
 import { useState, useEffect } from "react";
 import { getSortedArticles } from "../../Api";
 import ArticleCard from "./ArticleCard";
@@ -43,16 +42,17 @@ function Articles() {
 
   return (
     <div>
-      <NavBar />
       <h2>{topic ? `Articles about ${topic}` : "All Articles"}</h2>
       <SortArticles
         sortBy={sortBy}
         order={order}
         setSearchParams={setSearchParams}
       />
-      {articles.map((article) => (
-        <ArticleCard key={article.article_id} article={article} />
-      ))}
+      <div className="articles-grid">
+        {articles.map((article) => (
+          <ArticleCard key={article.article_id} article={article} />
+        ))}
+      </div>
     </div>
   );
 }

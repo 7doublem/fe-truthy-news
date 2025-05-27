@@ -28,13 +28,13 @@ function VoteCard({ initialVotes, id, type }) {
   };
 
   return (
-    <div>
+    <div className="vote-card">
       <p>Votes: {votes}</p>
       <button onClick={() => handleUpdateVotes(1)} disabled={hasVoted}>
-        <img src={thumbsUp} alt="Thumbs Up" width={24} height={24} />
+        <img src={thumbsUp} alt="Thumbs Up" />
       </button>
       <button onClick={() => handleUpdateVotes(-1)} disabled={hasVoted}>
-        <img src={thumbsDown} alt="Thumbs Down" width={24} height={24} />
+        <img src={thumbsDown} alt="Thumbs Down" />
       </button>
       {error && <p>{error}</p>}
     </div>

@@ -28,8 +28,7 @@ function CommentCard({ comment }) {
       });
   }
   return (
-    <div>
-      <section>
+    <div className="comment">
         <p>{comment.author} commented:</p>
         <p>{comment.body}</p>
         <p>{new Date(comment.created_at).toLocaleString()}</p>
@@ -44,8 +43,6 @@ function CommentCard({ comment }) {
               <img
                 src={bin}
                 alt="Delete Comment"
-                width={24}
-                height={24}
                 onClick={deleteComment}
                 disabled={isDeletingComment}
               />
@@ -54,7 +51,6 @@ function CommentCard({ comment }) {
         )}
         {message && <p>{message}</p>}
         {error && <p>{error}</p>}
-      </section>
     </div>
   );
 }

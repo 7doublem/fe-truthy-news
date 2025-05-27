@@ -36,9 +36,9 @@ function PostComment({ article_id }) {
       });
   }
   return (
-    <div>
+    <div className="comment-form">
       {!user ? (
-        <div>
+        <div className="comment-form">
           <button onClick={mustLogIn}>Log in</button>
         </div>
       ) : (

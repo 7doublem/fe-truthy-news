@@ -31,7 +31,7 @@ function CommentSection() {
   }
 
   return (
-    <section>
+    <section className="comment-list">
       <p>Comments</p>
       {comments.length === 0 ? (
         <p>No comments yet</p>
